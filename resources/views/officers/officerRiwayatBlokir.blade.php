@@ -14,13 +14,14 @@
                 <div class="card-header" style="justify-content: space-between;">
                     <h4 class="">Data Riwayat Pengkajian Blokir</h4>
                     <div class="card-header-form">
-                        <form>
-                          <div class="input-group">
-                            <input type="text" class="form-control" placeholder="No. SHM">
-                            <div class="input-group-btn">
-                              <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        <form action="{{route('officer.cariDataSHMBlokir')}}" method="POST">
+                            @csrf
+                            <div class="input-group">
+                                <input type="text" name="nomorSHM" id="nomorSHM" class="form-control" placeholder="No. SHM" required>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                </div>
                             </div>
-                          </div>
                         </form>
                       </div>
                 </div>

@@ -96,6 +96,14 @@
                       @endif
                       <div class="col-md-12 pt-4">
                         <div class="row" style="justify-content: space-between;">
+                            <div><h4>Surat Hasil Kajian</h4></div>
+                            <div>
+                                <button data-toggle="modal" data-target="#suratHasilKajian" class="btn btn-sm btn-primary lihatHasilKajian">Lihat Hasil Kajian</button>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 pt-4">
+                        <div class="row" style="justify-content: space-between;">
                             <div><h4>Berkas Pendukung</h4></div>
                             <div>
                                 @if ($blokir['statusPengkajian']=='Klarifikasi')
@@ -274,6 +282,20 @@
                         <button type="submit" class="btn btn-primary">Proses</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="suratHasilKajian" tabindex="-1" role="dialog" aria-labelledby="suratHasilKajian" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title text-white">Surat Hasil Kajian</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="lihatHasilKajian" class="modal-body">
+                </div>
             </div>
         </div>
     </div>
@@ -617,6 +639,22 @@
     <!-- Template JS File -->
     <script src="{{asset('/assets/js/scripts.js')}}"></script>
     <script src="{{asset('/assets/js/custom.js')}}"></script>
+    @if ($blokir['statusPengkajian']=='Selesai')
+    <script>
+        $(document).on("click", ".lihatHasilKajian", function () {
+            var url = "<?php echo url($blokir['suratHasilKajian']); ?>"
+            console.log(url)
+            var options = {
+                height: "200%",
+                width: "100%",
+                pdfOpenParams: {
+                    pagemode: 'thumbs'
+                }
+            };
+            PDFObject.embed(url, "#lihatHasilKajian",{height: "45rem"});
+        });
+    </script>
+    @endif
     @if ($blokir['suratKuasa']!=null || $blokir['suratKuasa']!='')
     <script>
         $(document).on("click", ".lihatSuratKuasa", function () {

@@ -26,7 +26,7 @@
                         @endif
                         @if ($blokir['statusPengkajian']=='Selesai')
                         <a target="_blank" href="{{route('officer.printHasilKajian',$blokir['id'])}}"  class="btn btn-info">Lihat Surat Hasil Kajian</i></a>
-                        <button data-toggle="modal" data-target="#uploadHasilKajian"  class="btn btn-primary">Upload Hasil Kajian</i></a>
+                        <button data-toggle="modal" data-target="#uploadHasilKajian"  class="btn btn-primary uploadHasilKajian">Upload Hasil Kajian</i></a>
                         @endif
                     </div>
                 </div>
@@ -445,8 +445,11 @@
                                     <i class="fas fa-boxes"></i>
                                 </div>
                             </div>
-                            <input type="file" name="suratKajian" id="suratKajian" class="form-control" required>
+                            <input type="file" accept=".pdf" name="suratKajian" id="suratKajian" class="form-control" required>
                         </div>
+                    </div>
+                    <div id="frameSuratHasilKajianTTD">
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -1115,6 +1118,22 @@
                 }
             };
             PDFObject.embed(url, "#frameSuratKuasa",{height: "45rem"});
+        });
+    </script>
+    @endif
+    @if ($blokir['suratHasilKajian']!='false')
+    <script>
+        $(document).on("click", ".uploadHasilKajian", function () {
+            var url = "<?php echo url($blokir['suratHasilKajian']); ?>"
+            console.log(url)
+            var options = {
+                height: "200%",
+                width: "100%",
+                pdfOpenParams: {
+                    pagemode: 'thumbs'
+                }
+            };
+            PDFObject.embed(url, "#frameSuratHasilKajianTTD",{height: "45rem"});
         });
     </script>
     @endif

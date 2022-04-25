@@ -467,19 +467,58 @@
             <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:4.3pt; margin-left:37.2pt;text-align:justify;text-justify:inter-ideograph;text-indent: -.5pt;line-height:110%;">
                 <span style='font-family:"Bookman Old Style",serif;'>Kepala Sub Seksi Penanganan</span>
             </p>
-            <p class="MsoNormal" style="margin-bottom:.6pt;line-height:110%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style='font-family:"Bookman Old Style",serif;'>Permasalahan Pertanahan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Calon Analis Sengketa Pertanahan</span></p>
-            <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:5.6pt; margin-left:118.85pt;"><span style='font-family:"Bookman Old Style",serif;'>&nbsp;</span></p>
-            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:0in; margin-bottom:1.4pt;margin-left:7.75pt;text-align:center;"><span style='font-family:"Bookman Old Style",serif;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span></p>
-            <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:0in; margin-left:118.85pt;"><span style='font-family:"Bookman Old Style",serif;'>&nbsp;</span></p>
-            <p class="MsoNormal" style="margin-top:0in;margin-right:23.55pt;margin-bottom: 0in;margin-left:92.4pt;text-align:justify;text-justify:inter-ideograph; text-indent:204.75pt;line-height:110%;"><span style='font-family:"Bookman Old Style",serif;'>Ika Ria Wijayanti, S.H. Heri, S.H.</span></p>
-            <p class="MsoNormal" style="margin-top:0in;margin-right:9.25pt;margin-bottom: 1.95pt;margin-left:41.05pt;text-align:justify;text-justify:inter-ideograph; text-indent:237.65pt;line-height:110%;"><span style='font-family:"Bookman Old Style",serif;'>NIP. 19942805 201903 2 004 NIP. 19861130201402 1 003</span></p>
-            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:0in; margin-bottom:.9pt;margin-left:8.2pt;text-align:center;"><span style='font-size: 12.0pt;line-height:107%;font-family:"Bookman Old Style",serif;'>&nbsp;</span></p>
-            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:71.5pt; margin-bottom:.2pt;margin-left:84.05pt;text-align:center;text-indent:-.5pt; line-height:111%;"><span style='font-size:12.0pt;line-height:111%;font-family: "Bookman Old Style",serif;'>Kepala Seksi Penanganan Masalah dan&nbsp; Pengendalian Pertanahan</span></p>
-            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:0in; margin-bottom:.9pt;margin-left:8.2pt;text-align:center;"><span style='font-size: 12.0pt;line-height:107%;font-family:"Bookman Old Style",serif;'>&nbsp;</span></p>
-            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:0in; margin-bottom:.9pt;margin-left:8.2pt;text-align:center;"><span style='font-size: 12.0pt;line-height:107%;font-family:"Bookman Old Style",serif;'>&nbsp;</span></p>
-            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:0in; margin-bottom:.9pt;margin-left:8.2pt;text-align:center;"><span style='font-size: 12.0pt;line-height:107%;font-family:"Bookman Old Style",serif;'>&nbsp;</span></p>
-            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:79.25pt; margin-bottom:.2pt;margin-left:84.05pt;text-align:center;text-indent:-.5pt; line-height:111%;"><span style='font-size:12.0pt;line-height:111%;font-family: "Bookman Old Style",serif;'>Senti Silitonga, S.H., M.Si.</span></p>
-            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:79.25pt; margin-bottom:.2pt;margin-left:84.05pt;text-align:center;text-indent:-.5pt; line-height:111%;"><span style='font-size:12.0pt;line-height:111%;font-family: "Bookman Old Style",serif;'>NIP. 19760514 200502 2 003</span></p>
+            <p class="MsoNormal" style="margin-bottom:.6pt;line-height:110%;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span style='font-family:"Bookman Old Style",serif;'>
+                    Permasalahan Pertanahan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Calon Analis Sengketa Pertanahan
+                </span>
+            </p>
+            <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:5.6pt; margin-left:118.85pt;">
+                <span style='font-family:"Bookman Old Style",serif;'>&nbsp;</span>
+            </p>
+            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:0in; margin-bottom:1.4pt;margin-left:7.75pt;text-align:center;">
+                <span style='font-family:"Bookman Old Style",serif;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span>
+            </p>
+            <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:0in; margin-left:118.85pt;">
+                <span style='font-family:"Bookman Old Style",serif;'>&nbsp;</span>
+            </p>
+            <p class="MsoNormal" style="margin-top:0in;margin-right:23.55pt;margin-bottom: 0in;margin-left:92.4pt;text-align:justify;text-justify:inter-ideograph; text-indent:204.75pt;line-height:110%;">
+                <span style='font-family:"Bookman Old Style",serif;'>
+                    {{$penjabat['calon_analis_sengketa']}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$penjabat['kepala_kantor']}}
+                </span>
+            </p>
+            <p class="MsoNormal" style="margin-top:0in;margin-right:9.25pt;margin-bottom: 1.95pt;margin-left:41.05pt;text-align:justify;text-justify:inter-ideograph; text-indent:237.65pt;line-height:110%;">
+                <span style='font-family:"Bookman Old Style",serif;'>
+                    NIP. {{$penjabat['nip_calon_analisis_sengketa']}} NIP. {{$penjabat['nip_kepala_kantor']}}
+                </span></p>
+            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:0in; margin-bottom:.9pt;margin-left:8.2pt;text-align:center;">
+                <span style='font-size: 12.0pt;line-height:107%;font-family:"Bookman Old Style",serif;'>&nbsp;</span>
+            </p>
+            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:71.5pt; margin-bottom:.2pt;margin-left:84.05pt;text-align:center;text-indent:-.5pt; line-height:111%;">
+                <span style='font-size:12.0pt;line-height:111%;font-family: "Bookman Old Style",serif;'>
+                    Kepala Seksi Penanganan Masalah dan&nbsp; Pengendalian Pertanahan
+                </span>
+            </p>
+            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:0in; margin-bottom:.9pt;margin-left:8.2pt;text-align:center;">
+                <span style='font-size: 12.0pt;line-height:107%;font-family:"Bookman Old Style",serif;'>&nbsp;</span>
+            </p>
+            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:0in; margin-bottom:.9pt;margin-left:8.2pt;text-align:center;">
+                <span style='font-size: 12.0pt;line-height:107%;font-family:"Bookman Old Style",serif;'>&nbsp;</span>
+            </p>
+            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:0in; margin-bottom:.9pt;margin-left:8.2pt;text-align:center;">
+                <span style='font-size: 12.0pt;line-height:107%;font-family:"Bookman Old Style",serif;'>&nbsp;</span>
+            </p>
+            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:79.25pt; margin-bottom:.2pt;margin-left:84.05pt;text-align:center;text-indent:-.5pt; line-height:111%;">
+                <span style='font-size:12.0pt;line-height:111%;font-family: "Bookman Old Style",serif;'>
+                    {{$penjabat['kepala_sub_penanganan_masalah_pertanahan']}}
+                </span>
+            </p>
+            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:79.25pt; margin-bottom:.2pt;margin-left:84.05pt;text-align:center;text-indent:-.5pt; line-height:111%;">
+                <span style='font-size:12.0pt;line-height:111%;font-family: "Bookman Old Style",serif;'>
+                    NIP. {{$penjabat['nip_kepala_sub_penanganan_masalah_pertanahan']}}
+                </span>
+            </p>
             <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:25.8pt; margin-left:4.55pt;"><span style='font-family:"Bookman Old Style",serif;'>&nbsp;</span></p>
             <h1>Melayani, Profesional, Terpercaya</h1>
         </div>

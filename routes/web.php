@@ -35,6 +35,9 @@ Route::middleware('auth')->group(function (){
     Route::post('/apps/riwayat/blokirdokumen/updatehubunganhukum','Apps\AppsController@updateHubunganHukum')->name('apps.riwayatblokir.updatesurathubunganhukum');
     // Update data dokumen
     Route::post('/apps/riwayat/blokirtiketloket','Apps\AppsController@nomerTiketLoket')->name('apps.riwayatblokir.tiketLoket');
+    Route::get('/apps/profile','Apps\ProfileController@index')->name('apps.profile');
+    Route::post('/apps/profile/update','Apps\ProfileController@updateProfile')->name('apps.updateProfile');
+    Route::post('/apps/profile/update/password','Apps\ProfileController@updatePassword')->name('apps.updatePassword');
 
     // Petugas Route
     Route::get('/officer','Officer\OfficerController@index')->name('officerIndex');
@@ -55,6 +58,20 @@ Route::middleware('auth')->group(function (){
     Route::get('/officer/riwayatblokir/pengkajian/hasilkajian/{pengajuan_blokir_id}','Officer\OfficerController@printHasilKajian')->name('officer.printHasilKajian');
     Route::post('/officer/riwayatblokir/pengkajian/upload/hasilkajian','Officer\OfficerController@uploadHasilKajian')->name('officer.uploadHasilKajian');
 
+
+    Route::post('/officer/riwayatblokir/carishm','Officer\OfficerController@cariSHMDataBlokir')->name('officer.cariDataSHMBlokir');
     Route::get('/officer/report/blokir','Officer\OfficerController@reportBlokir')->name('officer.reportBlokir');
+    Route::post('/officer/report/blokir','Officer\OfficerController@generateReportBlokir')->name('officer.generateReportBlokir');
+    Route::post('/officer/report/blokir/download','Officer\OfficerController@downloadReport')->name('officer.downloadReportBlokir');
+    //setting
+    Route::get('/officer/setting/petugas','Officer\OfficerController@settingPetugas')->name('officer.settingPetugas');
+    Route::post('/officer/setting/petugas/add','Officer\OfficerController@storePetugas')->name('officer.storePetugas');
+    Route::post('/officer/setting/petugas/update','Officer\OfficerController@updatePetugas')->name('officer.updatePetugas');
+
+    Route::get('/officer/setting/pemohon','Officer\OfficerController@settingPemohon')->name('officer.settingPemohon');
+    Route::post('/officer/setting/pemohon/updatevalidhukum','Officer\OfficerController@updatevalidhukum')->name('officer.updatevalidhukum');
+    Route::get('/officer/setting/penjabat','Officer\OfficerController@settingPenjabat')->name('officer.settingPenjabat');
+    Route::post('/officer/setting/penjabat','Officer\OfficerController@updatePenjabat')->name('officer.updatePenjabat');
+
 });
 

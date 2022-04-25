@@ -11,7 +11,7 @@
             <li class="menu-header">Dashboard</li>
             <li>
                 <a class="nav-link" href="{{route('officerIndex')}}">
-                    <i class="fas fa-pencil-ruler"></i> <span>Petugas</span>
+                    <i class="fas fa-pencil-ruler"></i> <span>Dashboard</span>
                 </a>
             </li>
             <li>
@@ -27,9 +27,17 @@
                 </ul>
             </li> --}}
             <li>
-                <a class="nav-link" href="credits.html">
+                <a class="nav-link" href="{{route('officer.reportBlokir')}}">
                     <i class="fas fa-pencil-ruler"></i> <span>Report</span>
                 </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Setting</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{route('officer.settingPetugas')}}">Petugas</a></li>
+                    <li><a class="nav-link" href="{{route('officer.settingPemohon')}}">Pemohon</a></li>
+                    <li><a class="nav-link" href="{{route('officer.settingPenjabat')}}">Penjabat</a></li>
+                </ul>
             </li>
         </ul>
         @endrole
@@ -49,8 +57,8 @@
                 </ul>
             </li>
             <li>
-                <a class="nav-link" href="credits.html">
-                    <i class="fas fa-pencil-ruler"></i> <span>Credits</span>
+                <a class="nav-link" href="{{route('apps.profile')}}">
+                    <i class="fas fa-pencil-ruler"></i> <span>Profile</span>
                 </a>
             </li>
         </ul>
