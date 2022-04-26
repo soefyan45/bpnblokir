@@ -10,11 +10,88 @@
             <div class="section-header">
                 <h1>Dashboard</h1>
             </div>
-            <div class="card card-info">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                  <div class="card card-statistic-1">
+                    <div class="card-icon bg-primary">
+                      <i class="far fa-newspaper"></i>
+                    </div>
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>Total Pengajuan</h4>
+                      </div>
+                      <div class="card-body">
+                        {{$total}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                  <div class="card card-statistic-1">
+                    <div class="card-icon bg-danger">
+                      <i class="far fa-newspaper"></i>
+                    </div>
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>Verifikasi</h4>
+                      </div>
+                      <div class="card-body">
+                        {{$verifikasi}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                  <div class="card card-statistic-1">
+                    <div class="card-icon bg-warning">
+                      <i class="far fa-newspaper"></i>
+                    </div>
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>Klarifikasi</h4>
+                      </div>
+                      <div class="card-body">
+                        {{$klarifikasi}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                  <div class="card card-statistic-1">
+                    <div class="card-icon bg-success">
+                      <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>Pengkajian</h4>
+                      </div>
+                      <div class="card-body">
+                        {{$pengkajian}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-6 col-sm-6 col-12">
+                  <div class="card card-statistic-1">
+                    <div class="card-icon bg-success">
+                      <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>Selesai</h4>
+                      </div>
+                      <div class="card-body">
+                        {{$selesai}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {{-- <div class="card card-info">
                 <div class="card-header">
                     <h3>Data Riwayat Pengkajian Blokir</h3>
                 </div>
-            </div>
+            </div> --}}
         </section>
     </div>
     </div>

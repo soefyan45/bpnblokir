@@ -11,8 +11,18 @@
                 <h1>Pengajuan Blokir Online</h1>
             </div>
             <div class="row">
-                <div class="col-md-6 col-12">
+                <div class="col-md-6 col-12 order-md-2">
                     <div class="card card-info">
+                        <div class="card-header">
+                            <h5>Profile</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Jika anda <strong style="color: red;">Hukum/Badan Hukum</strong> Silahkan Update Profile, Di Menu <strong><a href="{{route('apps.profile')}}">Profile</a></strong> Untuk Menambahkan Detail</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12 order-md-1">
+                    <div class="card card-primay">
                         <div class="card-header">
                             <h3>Masukan Data</h3>
                         </div>
