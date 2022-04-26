@@ -31,12 +31,21 @@
                                             <option selected value="Perorangan">Perorangan</option>
                                         </select>
                                     @endif--}}
+                                    {{auth()->user()['status_pemohon']}}
+                                    @if (auth()->user()['status_pemohon']!='Perorangan')
                                     <select id="statusPemohon" name="statusPemohon" required class="form-control statusPemohon @error('statusPemohon') is-invalid @enderror" tabindex="1" required>
                                         <option value="" selected>pilih status</option>
                                         <option value="Perorangan">Perorangan</option>
                                         <option value="Badan Hukum">Badan Hukum</option>
                                         <option value="Penegak Hukum">Penegak Hukum</option>
                                     </select>
+                                    @endif
+                                    @if (auth()->user()['status_pemohon']=='Perorangan')
+                                    <select id="statusPemohon" name="statusPemohon" required class="form-control statusPemohon @error('statusPemohon') is-invalid @enderror" tabindex="1" required>
+                                        <option selected value="Perorangan">Perorangan</option>
+                                    </select>
+                                    @endif
+
                                     @error('statusPemohon')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

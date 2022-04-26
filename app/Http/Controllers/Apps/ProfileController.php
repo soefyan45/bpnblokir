@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Apps;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailInfo;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class ProfileController extends Controller
 {
@@ -29,6 +31,14 @@ class ProfileController extends Controller
                 'nama_hukum'        => $request['nama_hukum'],
                 'surat_hukum'       => $user->uploadDokumen($request['surat_hukum'],'SuratHukum'),
             ]);
+            $data = array(
+                'name'      => 'BPN KAMPAR',
+                'body'      => 'Permohonan pemohon segabai <b>Hukum/Badan Hukum</b> dengan email <b>'.$user['email'].'</b><br>, Silahkan akses aplikasi untuk melihat berkas permohonan',
+                'cta_link'  => route('officer.settingPemohon'),
+                'cta_title' => 'Detail',
+                'subject'   => 'Pemohon Sebagai Hukum/Badan Hukum'
+            );
+            Mail::to('soefyan45@gmail.com')->send(new MailInfo($data));
             return redirect()->back()->with('success', 'Update Profile Berhasil !!!');
         }
         $user->update([

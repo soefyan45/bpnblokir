@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Officer;
 
 use App\Exports\BlokirReportExport;
 use App\Http\Controllers\Controller;
+use App\Mail\MailInfo;
 use App\Model\HasilKajianBlokir;
 use App\Model\NoteDokumenLampiran;
 use App\Model\PengajuanBlokir;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Exception;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class OfficerController extends Controller
 {
@@ -121,11 +123,12 @@ class OfficerController extends Controller
         ]);
         return redirect()->back()->with('success', 'Update Status Berkas Surat Permohonan Berhasil !!!');
     }
-    public function klarifikasiDokumen(Request $request,PengajuanBlokir $pengajuanBlokir)
+    public function klarifikasiDokumen(Request $request,PengajuanBlokir $pengajuanBlokir,User $user)
     {
         # code...
         // return $request;
         $blokir = $pengajuanBlokir->find($request['id_blokir']);
+        $user   = $user->find($blokir['user_id']);
         $blokir->update([
             'statusPengkajian'  => $request['statusPengajuan'],
             'anSHM'             => $request['anSHM'],
@@ -133,34 +136,68 @@ class OfficerController extends Controller
             'luasSHM'           => $request['luasSHM'],
             'SUnomor'           => $request['suNomor'],
         ]);
+        $data = array(
+            'name'      => 'BPN KAMPAR',
+            'body'      => '<b>Dokumen Sudah Di Verifikasi</b><br>Silahkan melakukan pendaftaran di loket pelayanan <b>BPN KAMPAR</b>, dengan membawa berkas yang di upload, beserta dokumen pendukung dan lakukan pembayaran PNPB. Nomor #tiket'.$blokir['tiket'].'. <b>Upload bukti pembayaran PNPB di aplikasi</b>.',
+            'cta_link'  => route('apps.riwayatblokir.detail',$blokir['id']),
+            'cta_title' => 'Upload Bukti Bayar PBPN',
+            'subject'   => 'Dokumen Verifikasi #Tiket'.$blokir['tiket']
+        );
+        Mail::to($user['email'])->send(new MailInfo($data));
         return redirect()->back()->with('success', 'Update Status Berkas Surat Permohonan Berhasil !!!');
     }
-    public function dokumenTidakValid(Request $request,PengajuanBlokir $pengajuanBlokir)
+    public function dokumenTidakValid(Request $request,PengajuanBlokir $pengajuanBlokir,User $user)
     {
         # code...
         // return $request;
         $blokir = $pengajuanBlokir->find($request['id_blokir']);
+        $user   = $user->find($blokir['user_id']);
         $blokir->update([
             'statusPengkajian'  => 'Dokumen di Tolak'
         ]);
+        $data = array(
+            'name'      => 'BPN KAMPAR',
+            'body'      => '<b>Berkas Tidak Valid</b><br>Silahkan upload ulang dengan berkas yang valid dan jelas. Nomor anda #tiket'.$blokir['tiket'].' detail silahkan akses aplikasi',
+            'cta_link'  => route('apps.riwayatblokir.detail',$blokir['id']),
+            'cta_title' => 'Detail',
+            'subject'   => 'Berkas Tidak Valid #Tiket'.$blokir['tiket']
+        );
+        Mail::to($user['email'])->send(new MailInfo($data));
         return redirect()->back()->with('success', 'Dokument Di Tolak');
     }
-    public function cekPNPB(Request $request,PengajuanBlokir $pengajuanBlokir)
+    public function cekPNPB(Request $request,PengajuanBlokir $pengajuanBlokir,User $user)
     {
         # code...
         // return $request;
+        $blokir = $pengajuanBlokir->find($request['id_blokir']);
+        $user   = $user->find($blokir['user_id']);
         if($request['konfirmasiPNPB']=='Tidak Valid'){
-            $blokir = $pengajuanBlokir->find($request['id_blokir']);
             $blokir->update([
                 'statusPNPB'        => $request['konfirmasiPNPB'],
             ]);
+            $data = array(
+                'name'      => 'BPN KAMPAR',
+                'body'      => '<b>Tiket Loket atau Bukti PNPB Tidak Valid</b><br>Silahkan upload ulang tiket loket dan bukti bayar PNPB yang valid. Nomor anda #tiket'.$blokir['tiket'].' detail silahkan akses aplikasi',
+                'cta_link'  => route('apps.riwayatblokir.detail',$blokir['id']),
+                'cta_title' => 'Upload Ulang',
+                'subject'   => 'Loket Pelayanan Atau PNPB Tidak Valid #Tiket'.$blokir['tiket']
+            );
+            Mail::to($user['email'])->send(new MailInfo($data));
             return redirect()->back()->with('success', 'Konfirmasi PNPB Berhasil !!!');
         }
-        $blokir = $pengajuanBlokir->find($request['id_blokir']);
+        // $blokir = $pengajuanBlokir->find($request['id_blokir']);
         $blokir->update([
             'statusPNPB'        => $request['konfirmasiPNPB'],
             'statusPengkajian'  => 'Pengkajian Blokir'
         ]);
+        $data = array(
+            'name'      => 'BPN KAMPAR',
+            'body'      => '<b>Proses Pengkajian Oleh Petugas</b><br>Permohonan pengkajian blokir anda dalam proses oleh petugas <b>BPN KAMPAR</b>. Nomor anda #tiket'.$blokir['tiket'].' detail silahkan akses aplikasi',
+            'cta_link'  => route('apps.riwayatblokir.detail',$blokir['id']),
+            'cta_title' => 'Detail',
+            'subject'   => 'Proses Pengkajian Oleh Petugas #Tiket'.$blokir['tiket']
+        );
+        Mail::to($user['email'])->send(new MailInfo($data));
         return redirect()->back()->with('success', 'Konfirmasi PNPB Berhasil !!!');
     }
     public function storeKeteranganDokumen(Request $request,NoteDokumenLampiran $noteDokumenLampiran)
@@ -206,14 +243,25 @@ class OfficerController extends Controller
         $penjabat = $penjabatBlokir->find(1);
         return view('officers.suratHasilKajian',['blokir'=>$blokir,'penjabat'=>$penjabat]);
     }
-    public function uploadHasilKajian(Request $request,PengajuanBlokir $pengajuanBlokir)
+    public function uploadHasilKajian(Request $request,PengajuanBlokir $pengajuanBlokir,User $user)
     {
         # code...
         // return $request;
         $blokir = $pengajuanBlokir->find($request['id_blokir']);
+        $user   = $user->find($blokir['user_id']);
         $blokir->update([
-            'suratHasilKajian' => $pengajuanBlokir->uploadDocument($request['suratKajian'],'surathasil_kajian')
+            'suratHasilKajian' => $pengajuanBlokir->uploadDocument($request['suratKajian'],'surathasil_kajian'),
+            'statusPengkajian' => 'Selesai'
         ]);
+        // email
+        $data = array(
+            'name'      => 'BPN KAMPAR',
+            'body'      => '<b>Proses Pengkajian Selesai</b><br>Permohonan pengkajian blokir telah <b>SELESAI</b>. Nomor anda #tiket'.$blokir['tiket'].' detail silahkan akses aplikasi',
+            'cta_link'  => route('apps.riwayatblokir.detail',$blokir['id']),
+            'cta_title' => 'Detail',
+            'subject'   => 'Pengkajian Blokir SELESAI #Tiket'.$blokir['tiket']
+        );
+        Mail::to($user['email'])->send(new MailInfo($data));
         return redirect()->back()->with('success', 'Berhasil Upload Surat Hasil Kajian !!!');
     }
     public function cariSHMDataBlokir(Request $request,PengajuanBlokir $pengajuanBlokir)

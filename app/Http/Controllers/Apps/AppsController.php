@@ -3,23 +3,38 @@
 namespace App\Http\Controllers\Apps;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailInfo;
 use App\Model\PengajuanBlokir;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AppsController extends Controller
 {
     //
-    public function index()
+    public function index(PengajuanBlokir $pengajuanBlokir)
     {
         # code...
-        return view('apps/index');
+        $totalPermohonan = $pengajuanBlokir->where('user_id',Auth::id())->count();
+        $verifikasi = $pengajuanBlokir->where('user_id',Auth::id())->where('statusPengkajian','Verifikasi Dokumen')->count();
+        $klarifikasi = $pengajuanBlokir->where('user_id',Auth::id())->where('statusPengkajian','Klarifikasi')->count();
+        $pengkajian = $pengajuanBlokir->where('user_id',Auth::id())->where('statusPengkajian','Pengkajian Blokir')->count();
+        $selesai = $pengajuanBlokir->where('user_id',Auth::id())->where('statusPengkajian','Selesai')->count();
+        // return $totalPermohonan;
+        return view('apps/index',[
+            'total'         => $totalPermohonan,
+            'verifikasi'    => $verifikasi,
+            'klarifikasi'   => $klarifikasi,
+            'pengkajian'    => $pengkajian,
+            'selesai'       => $selesai,
+        ]);
     }
     public function pengajuanBlokir()
     {
         # code...
+
         return view('apps.pengajuanBlokir');
     }
     public function storePengajuanBlokir(Request $request,PengajuanBlokir $pengajuanBlokir)
@@ -89,6 +104,14 @@ class AppsController extends Controller
             $store->update([
                 'tiket' => $y.$m.$store['id']
             ]);
+            $data = array(
+                'name'      => 'BPN KAMPAR',
+                'body'      => 'Tiket <b>pengkajian blokir online</b> baru di buat oleh pemohon dengan nomor #tiket'.$y.$m.$store['id'].' detail silahkan akses aplikasi',
+                'cta_link'  => route('officer.pengkajianblokir',$store['id']),
+                'cta_title' => 'Detail',
+                'subject'   => 'Info Permohonan Blokir #Tiket'.$y.$m.$store['id']
+            );
+            Mail::to('soefyan45@gmail.com')->send(new MailInfo($data));
             return redirect()->route('apps.riwayatblokir')->with('success', 'Pengajuan Kajian Blokir Berhasil di Buat !!!');
         }
     }
@@ -182,6 +205,15 @@ class AppsController extends Controller
             'fotoPNPB'              => $pengajuanBlokir->uploadImage($request['buktiBayar'],'pnpb'),
             'tanggalBayarPNPB'      => $request['tanggalBayar']
         ]);
+        //email
+        $data = array(
+            'name'      => 'BPN KAMPAR',
+            'body'      => 'Pemohon sudah melakukan pendafaran ulang di <b>loket dan upload bukti pembayaran PNPB</b> #tiket'.$blokir['tiket'].'. Silahkan lakukan konfirmasi untuk melanjutkan permohoan blokir',
+            'cta_link'  => route('officer.pengkajianblokir',$blokir['id']),
+            'cta_title' => 'Detail',
+            'subject'   => 'Bukti Tiket & PNPB #Tiket'.$blokir['tiket']
+        );
+        Mail::to('soefyan45@gmail.com')->send(new MailInfo($data));
         return redirect()->back()->with('success', 'Update PNPB & No Tiket Loket Berhasil !!!');
     }
 }
