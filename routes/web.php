@@ -17,10 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 // Route
+
 Auth::routes(['verify' => true]);
 // Route::middleware('auth','verified')->group(function (){
 Route::middleware('auth')->group(function (){
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', function (){
+        if (auth()->user()->hasRole('petugas'))
+        {
+            return redirect(route('officerIndex'));
+        }else{
+            return redirect(route('appsIndex'));
+        }
+    })->name('home');
     Route::get('/apps','Apps\AppsController@index')->name('appsIndex');
     Route::get('/apps/pengajuan/blokir','Apps\AppsController@pengajuanBlokir')->name('apps.blokir');
     Route::post('/apps/pengajuan/blokir','Apps\AppsController@storePengajuanBlokir')->name('apps.storeblokir');
@@ -58,7 +66,6 @@ Route::middleware('auth')->group(function (){
     Route::post('/officer/riwayatblokir/pengkajian/cetakhasilkajian','Officer\OfficerController@generateHasilKajian')->name('officer.generateHasilKajian');
     Route::get('/officer/riwayatblokir/pengkajian/hasilkajian/{pengajuan_blokir_id}','Officer\OfficerController@printHasilKajian')->name('officer.printHasilKajian');
     Route::post('/officer/riwayatblokir/pengkajian/upload/hasilkajian','Officer\OfficerController@uploadHasilKajian')->name('officer.uploadHasilKajian');
-
 
     Route::post('/officer/riwayatblokir/carishm','Officer\OfficerController@cariSHMDataBlokir')->name('officer.cariDataSHMBlokir');
     Route::get('/officer/report/blokir','Officer\OfficerController@reportBlokir')->name('officer.reportBlokir');

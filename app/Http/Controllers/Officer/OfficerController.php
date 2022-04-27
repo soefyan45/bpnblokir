@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Mail;
 class OfficerController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware(['role:Petugas']);
+    }
     public function index(PengajuanBlokir $pengajuanBlokir,User $user)
     {
         # code...
