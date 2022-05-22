@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    BPN KAMPAR
+                    BPN Kab.KAMPAR
                 </div>
 
                 <div class="links">
