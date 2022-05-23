@@ -25,7 +25,7 @@ class SchedulerCheck extends Controller
                 'cta_title' => 'Detail',
                 'subject'   => 'Warning Pengkajian Blokir +3hari'
             );
-            Mail::to('soefyan45@gmail.com')->send(new MailInfo($data));
+            Mail::to('sentisilitonga1@gmail.com')->send(new MailInfo($data));
         }
     }
 }

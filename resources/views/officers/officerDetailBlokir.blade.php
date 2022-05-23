@@ -37,6 +37,11 @@
                           <td style="color: red"><strong>{{$blokir['tiket']}}</strong></td>
                         </tr>
                         <tr>
+                          <th style="width: 9rem">Tanggal Pengajuan</th>
+                          <td>:</td>
+                          <td style="color: blue"><strong>{{$blokir['created_at']}}</strong></td>
+                        </tr>
+                        <tr>
                           <th style="width: 9rem">Status Pemohon</th>
                           <td>:</td>
                           <td>{{$blokir['statusPemohon']}}</td>
@@ -197,6 +202,7 @@
                                 <tbody>
                                     <th>Bukti Bayar PNBP</th>
                                     <th>{{$blokir['tanggalBayarPNPB']}}</th>
+                                    <th><strong style="color: red">Tanggal Konfirmasi PNBP {{substr($blokir['pengkajianBlokir_at'],0,-8)}}</strong></th>
                                     <th>{{$blokir['statusPNPB']}}</th>
                                     <td>
                                         <button data-toggle="modal" data-target="#lihatPNPB" class="btn btn-sm btn-info">
