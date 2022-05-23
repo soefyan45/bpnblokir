@@ -53,12 +53,55 @@ class OfficerController extends Controller
         $riwayatBlokir = $pengajuanBlokir->riwayatBlokir();
         return view('officers.officerRiwayatBlokir',['Riwayat'=>$riwayatBlokir]);
     }
+    public function riwayatBlokir3day(PengajuanBlokir $pengajuanBlokir)
+    {
+        # code...
+        $riwayatBlokir = $pengajuanBlokir->riwayatCheck();
+        return view('officers.officerRiwayatBlokir',['Riwayat'=>$riwayatBlokir]);
+    }
     public function pengkajianBlokir($pengajuan_blokir_id,PengajuanBlokir $pengajuanBlokir)
     {
         # code...
         $blokir = $pengajuanBlokir->detailBlokir($pengajuan_blokir_id);
         // return $blokir;
         return view('officers.officerDetailBlokir',['blokir'=>$blokir]);
+    }
+    public function petugasUploadpnbp(Request $request,PengajuanBlokir $pengajuanBlokir,User $user)
+    {
+        # codesini...
+        // return $request;
+        $blokir = $pengajuanBlokir->find($request['id_blokir']);
+        // return $blokir;
+        $blokir->update([
+            'tiketLoket'            => $request['notiket'],
+            'fotoPNPB'              => $pengajuanBlokir->uploadImage($request['buktiBayar'],'pnpb'),
+            'tanggalBayarPNPB'      => $request['tanggalBayar']
+        ]);
+        //email
+        $data = array(
+            'name'      => 'BPN KAMPAR',
+            'body'      => 'Pemohon sudah melakukan pendafaran ulang di <b>loket dan upload bukti pembayaran PNPB</b> #tiket'.$blokir['tiket'].'. Silahkan lakukan konfirmasi untuk melanjutkan permohoan blokir',
+            'cta_link'  => route('officer.pengkajianblokir',$blokir['id']),
+            'cta_title' => 'Detail',
+            'subject'   => 'Bukti Tiket & PNPB #Tiket'.$blokir['tiket']
+        );
+        Mail::to('soefyan45@gmail.com')->send(new MailInfo($data));
+        $user   = $user->find($blokir['user_id']);
+        $blokir->update([
+            // 'statusPNPB'        => $request['konfirmasiPNPB'],
+            'statusPNPB'            => 'Valid',
+            'pengkajianBlokir_at'   => Carbon::parse(now())->toDateString(),
+            'statusPengkajian'      => 'Pengkajian Blokir'
+        ]);
+        $data1 = array(
+            'name'      => 'BPN KAMPAR',
+            'body'      => '<b>Proses Pengkajian Oleh Petugas</b><br>Permohonan pengkajian blokir anda dalam proses oleh petugas <b>BPN KAMPAR</b>. Nomor anda #tiket'.$blokir['tiket'].' detail silahkan akses aplikasi',
+            'cta_link'  => route('apps.riwayatblokir.detail',$blokir['id']),
+            'cta_title' => 'Detail',
+            'subject'   => 'Proses Pengkajian Oleh Petugas #Tiket'.$blokir['tiket']
+        );
+        Mail::to($user['email'])->send(new MailInfo($data1));
+        return redirect()->back()->with('success', 'Update PNPB & No Tiket Loket Berhasil !!!');
     }
     public function berkasKTP(Request $request,PengajuanBlokir $pengajuanBlokir)
     {
@@ -191,8 +234,9 @@ class OfficerController extends Controller
         }
         // $blokir = $pengajuanBlokir->find($request['id_blokir']);
         $blokir->update([
-            'statusPNPB'        => $request['konfirmasiPNPB'],
-            'statusPengkajian'  => 'Pengkajian Blokir'
+            'statusPNPB'            => $request['konfirmasiPNPB'],
+            'pengkajianBlokir_at'   => Carbon::parse(now())->toDateString(),
+            'statusPengkajian'      => 'Pengkajian Blokir'
         ]);
         $data = array(
             'name'      => 'BPN KAMPAR',

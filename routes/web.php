@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 // Route
+Route::get('/get3plus','Check\SchedulerCheck@showData3Day');
 
 Auth::routes(['verify' => true]);
 // Route::middleware('auth','verified')->group(function (){
@@ -51,7 +52,9 @@ Route::middleware('auth')->group(function (){
     // Petugas Route
     Route::get('/officer','Officer\OfficerController@index')->name('officerIndex');
     Route::get('/officer/riwayatblokir','Officer\OfficerController@riwayatBlokir')->name('officer.riwayatblokir');
+    Route::get('/officer/riwayatblokir3day','Officer\OfficerController@riwayatBlokir3day')->name('officer.riwayatblokir3day');
     Route::get('/officer/riwayatblokir/pengkajian/blokir/{pengajuan_blokir_id}','Officer\OfficerController@pengkajianBlokir')->name('officer.pengkajianblokir');
+    Route::post('/officer/riwayatblokir/pengkajian/uploadpnbp','Officer\OfficerController@petugasUploadpnbp')->name('officer.petugasUploadPnbp');
     Route::post('/officer/riwayatblokir/pengkajian/berkas/ktp','Officer\OfficerController@berkasKTP')->name('officer.berkasKTP');
     Route::post('/officer/riwayatblokir/pengkajian/berkas/kk','Officer\OfficerController@berkasKK')->name('officer.berkasKK');
     Route::post('/officer/riwayatblokir/pengkajian/berkas/shm','Officer\OfficerController@berkasSHM')->name('officer.berkasSHM');

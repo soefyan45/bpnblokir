@@ -20,6 +20,7 @@
                           <th style="width: 9rem">No. Tiket</th>
                           <td>:</td>
                           <td style="color: red">{{$blokir['tiket']}}</td>
+                          {{-- <td style="color: red">{{$blokir->tiket}}</td> --}}
                         </tr>
                         <tr>
                           <th style="width: 9rem">Status Pemohon</th>
@@ -35,6 +36,11 @@
                           <th style="width: 9rem">Lokasi</th>
                           <td>:</td>
                           <td>{{$blokir['kecamatan']}}/{{$blokir['desa']}}</td>
+                        </tr>
+                        <tr>
+                          <th style="width: 9rem">Google Maps</th>
+                          <td>:</td>
+                          <td><a target="_blank" href="{{$blokir['lokasi_SHM']}}">{{$blokir['lokasi_SHM']}}</a> </td>
                         </tr>
                         <tr>
                           <th style="width: 9rem">Status Pengkajian</th>
@@ -86,7 +92,7 @@
                       <div style="padding-top: 1rem">
                         <p style="color: red">&#8226; Silahkan Melakukan Pendaftaran di loket BPN Kampar</p>
                         <p style="color: red; margin-top:-20px;">&#8226; Bawa berkas fisik dokumen yang sudah di upload</p>
-                        <p style="color: red; margin-top:-20px;">&#8226; Melakukan Pembayaran PNPB, dan Upload Bukti Pembayaran, <a href="#"><strong data-toggle="modal" data-target="#uploadBuktiBayar">Upload Bukti Bayar</strong></a></p>
+                        <p style="color: red; margin-top:-20px;">&#8226; Melakukan Pembayaran PNBP, dan Upload Bukti Pembayaran, <a href="#"><strong data-toggle="modal" data-target="#uploadBuktiBayar">Upload Bukti Bayar</strong></a></p>
                       </div>
                       @endif
                       @if ($blokir['statusPengkajian']=='Pengkajian Blokir')
@@ -112,11 +118,11 @@
                             </div>
                         </div>
                         @if ($blokir['statusPengkajian']!='Verifikasi Dokumen')
-                        <div class="section-title mt-0">PNPB & Tiket</div>
+                        <div class="section-title mt-0">PNBP & Tiket</div>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <tbody>
-                                    <th>Bukti Bayar PNPB</th>
+                                    <th>Bukti Bayar PNBP</th>
                                     <th>{{$blokir['statusPNPB']}}</th>
                                     <td>
                                         <button data-toggle="modal" data-target="#lihatKTP" class="btn btn-sm btn-info">
@@ -163,6 +169,7 @@
                                         @endif
                                     </td>
                                 </tbody>
+                                @if($blokir['fotoSHM']!=null || $blokir['fotoSHM']!='')
                                 <tbody>
                                     <th>Photo SHM</th>
                                     <th>{{$blokir['status_SHM']}}</th>
@@ -177,6 +184,8 @@
                                         @endif
                                     </td>
                                 </tbody>
+                                @endif
+
                                 @if ($blokir['suratKuasa']!=null || $blokir['suratKuasa']!='')
                                 <tbody>
                                     <th>Surat Kuasa</th>
@@ -254,7 +263,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="float-left">Tanggal Bayar PNPB</label>
+                            <label class="float-left">Tanggal Bayar PNBP</label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">

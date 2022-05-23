@@ -134,8 +134,22 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label>Lokasi Koordinat SHM</label>
+                                    <input type="text" id="lokasiSHM" name="lokasiSHM" class="form-control @error('lokasiSHM') is-invalid @enderror" tabindex="1">
+                                    <div class="row" style="justify-content: space-between;margin-left:2px;margin-right:2px;">
+                                        <p class="text-danger">*optional</p>
+                                        <a target="_blank" href="https://www.google.com/maps/">Buka Google Maps</a>
+                                    </div>
+                                    @error('lokasiSHM')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label>Foto SHM</label>
-                                    <input type="file" accept=".png,.jpg,.jpeg" id="fotoSHM" name="fotoSHM" class="form-control @error('fotoSHM') is-invalid @enderror" tabindex="1" required>
+                                    <input type="file" accept=".png,.jpg,.jpeg" id="fotoSHM" name="fotoSHM" class="form-control @error('fotoSHM') is-invalid @enderror" tabindex="1">
+                                    <p class="text-danger">*optional</p>
                                     @error('fotoSHM')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

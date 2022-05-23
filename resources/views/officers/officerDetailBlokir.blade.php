@@ -15,7 +15,6 @@
         <section class="section">
             <div class="section-header">
                 <h4>Tindakan Pengkajian Pengajuan Blokir</h4>
-
             </div>
             <div class="card card-warning">
                 <div class="card-header" style="justify-content: space-between;">
@@ -67,6 +66,11 @@
                           <td>:</td>
                           <td>{{$blokir['kecamatan']}}/{{$blokir['desa']}}</td>
                         </tr>
+                        <tr>
+                            <th style="width: 9rem">Google Maps</th>
+                            <td>:</td>
+                            <td><a target="_blank" href="{{$blokir['lokasi_SHM']}}">{{$blokir['lokasi_SHM']}}</a> </td>
+                          </tr>
                         <tr>
                           <th style="width: 9rem">Status Pengkajian</th>
                           <td>:</td>
@@ -187,11 +191,11 @@
                             </div>
                         </div>
                         @if ($blokir['statusPengkajian']!='Verifikasi Dokumen' && $blokir['statusPengkajian']!='Dokumen di Tolak')
-                        <div class="section-title mt-0">PNPB & Tiket</div>
+                        <div class="section-title mt-0">PNBP & Tiket</div>
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <tbody>
-                                    <th>Bukti Bayar PNPB</th>
+                                    <th>Bukti Bayar PNBP</th>
                                     <th>{{$blokir['tanggalBayarPNPB']}}</th>
                                     <th>{{$blokir['statusPNPB']}}</th>
                                     <td>
@@ -319,7 +323,7 @@
             <form action="{{route('officer.klarifikasiDokumenBlokir')}}" method="POST" >
                 @csrf
                 <div class="modal-body">
-                    <p style="text-align: justify;">Dengan melakukan tindakan ini pemohon akan di <strong style="color: red;">intruksikan untuk melakukan pendaftaran ke loket pelayanan BPN Kab. Kampar</strong> dengan membawa berkas fisik yang sudah di upload di aplikasi. <strong style="color: red;">Dan melakukan pembayaran PNPB</strong></strong></p>
+                    <p style="text-align: justify;">Dengan melakukan tindakan ini pemohon akan di <strong style="color: red;">intruksikan untuk melakukan pendaftaran ke loket pelayanan BPN Kab. Kampar</strong> dengan membawa berkas fisik yang sudah di upload di aplikasi. <strong style="color: red;">Dan melakukan pembayaran PNBP</strong></strong></p>
                     <div class="form-group">
                         <label class="float-left">Tindakan</label>
                         <div class="input-group">
@@ -584,7 +588,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header bg-info">
-              <h5 class="modal-title text-white">Konfirmasi Pembayaran PNPB & Loket</h5>
+              <h5 class="modal-title text-white">Konfirmasi Pembayaran PNBP & Loket</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -592,7 +596,7 @@
             <form action="{{route('officer.cekPNPB')}}" method="POST" >
                 @csrf
                 <div class="modal-body">
-                    <p style="text-align: justify;">Dengan melakukan tindakan ini petugas mengkonfirmasi pemohon sudah open tiket dan melakukan pembayaran PNPB, dan Petugas melanjutkan pengkajian blokir</p>
+                    <p style="text-align: justify;">Dengan melakukan tindakan ini petugas mengkonfirmasi pemohon sudah open tiket dan melakukan pembayaran PNBP, dan Petugas melanjutkan pengkajian blokir</p>
                     <div class="form-group">
                         <label class="float-left">No Tiket Yang Di Input Pemohon</label>
                         <div class="input-group">
@@ -952,7 +956,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
                 <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white" id="editbarangLabel">Lihat PNPB</h5>
+                <h5 class="modal-title text-white" id="editbarangLabel">Lihat PNBP</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -961,6 +965,45 @@
                 <div class="modal-body">
                     @if ($blokir['tiketLoket']==''||$blokir['tiketLoket']==null)
                     <p>Pemohon Belum Input Data</p>
+                    <form method="POST" action="{{route('officer.petugasUploadPnbp')}}" enctype="multipart/form-data">
+                        @csrf
+                        <input name="id_blokir" hidden value="{{$blokir['id']}}">
+                        <div class="form-group">
+                            <label class="float-left">Upload Bukti Bayar</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-boxes"></i>
+                                    </div>
+                                </div>
+                                <input type="file" accept=".png,.jpg,.jpeg" name="buktiBayar" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="float-left">Tanggal Bayar PNBP</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-boxes"></i>
+                                    </div>
+                                </div>
+                                <input type="date" name="tanggalBayar" id="date" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="float-left">No Tiket</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-boxes"></i>
+                                    </div>
+                                </div>
+                                <input type="text" name="notiket" class="form-control" required>
+                            </div>
+                            <p style="color: red;">Masukan nomer tiket yang di dapatkan di pelayanan</p>
+                        </div>
+                        <button type="submit" class="btn btn-info btn-sm">Bantu Upload Bukti</button>
+                    </form>
                     @endif
                     @if ($blokir['tiketLoket']!=''||$blokir['tiketLoket']!=null)
                     <img style="width:100%;max-width:512px" src="{{URL::to('/')}}/{{$blokir['fotoPNPB']}}">

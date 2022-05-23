@@ -471,7 +471,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span style='font-family:"Bookman Old Style",serif;'>
                     Permasalahan Pertanahan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Calon Analis Sengketa Pertanahan
+                    Analis Hukum Pertanahan
                 </span>
             </p>
             <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:5.6pt; margin-left:118.85pt;">

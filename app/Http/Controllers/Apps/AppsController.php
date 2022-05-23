@@ -40,6 +40,14 @@ class AppsController extends Controller
     public function storePengajuanBlokir(Request $request,PengajuanBlokir $pengajuanBlokir)
     {
         # code...
+
+        if(isset($request['fotoSHM'])){
+            if($request['statusPemohon']!='Perorangan'){
+                $this->validate($request,[
+                    'fotoSHM'               => ['required','image','mimes:jpg,jpeg,png','max:4096'],
+                ]);
+            }
+        }
         // return $request;
         // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 
@@ -53,7 +61,7 @@ class AppsController extends Controller
                 'pekerjaanPemohon'      => ['required','string','max:20'],
                 'alamatPemohon'         => ['required','string','max:1024'],
                 'nomorSHM'              => ['required'],
-                'fotoSHM'               => ['required','image','mimes:jpg,jpeg,png','max:4096'],
+                // 'fotoSHM'               => ['required','image','mimes:jpg,jpeg,png','max:4096'],
                 'kecamatan'             => ['required'],
                 'desa'                  => ['required'],
                 'suratKuasa'            => ['required','mimes:pdf','max:4096'],
@@ -71,7 +79,7 @@ class AppsController extends Controller
                 'pekerjaanPemohon'      => ['required','string','max:20'],
                 'alamatPemohon'         => ['required','string','max:1024'],
                 'nomorSHM'              => ['required'],
-                'fotoSHM'               => ['required','image','mimes:jpg,jpeg,png','max:4096'],
+                // 'fotoSHM'               => ['required','image','mimes:jpg,jpeg,png','max:4096'],
                 'kecamatan'             => ['required'],
                 'desa'                  => ['required'],
                 // 'suratKuasa'            => ['required','mimes:pdf','max:4096'],
@@ -79,7 +87,6 @@ class AppsController extends Controller
                 'suratHubunganHukum'    => ['required','mimes:pdf','max:4096'],
             ]);
         }
-
         $store = $pengajuanBlokir->create([
             'user_id'               => Auth::id(),
             'statusPemohon'         => $request['statusPemohon'],
@@ -90,7 +97,7 @@ class AppsController extends Controller
             'alamatPemohon'         => $request['alamatPemohon'],
             'fotoKK'                => $pengajuanBlokir->uploadImage($request['fotoKK'],'kk'),
             'nomorSHM'              => $request['nomorSHM'],
-            'fotoSHM'               => $pengajuanBlokir->uploadImage($request['fotoSHM'],'shm'),
+            // 'fotoSHM'               => $pengajuanBlokir->uploadImage($request['fotoSHM'],'shm'),
             'kecamatan'             => $request['kecamatan'],
             'desa'                  => $request['desa'],
             'suratKuasa'            => $pengajuanBlokir->uploadDocument($request['suratKuasa'],'suratkuasa'),
@@ -101,6 +108,16 @@ class AppsController extends Controller
             date_default_timezone_set("Asia/Jakarta");
             $y      = Carbon::now()->isoFormat('YY');
             $m      = Carbon::now()->isoFormat('MM');
+            if(isset($request['fotoSHM'])){
+                $store->update([
+                    'fotoSHM' => $pengajuanBlokir->uploadImage($request['fotoSHM'],'shm'),
+                ]);
+            }
+            if(isset($request['lokasiSHM'])){
+                $store->update([
+                    'lokasi_SHM' => $request['lokasiSHM'],
+                ]);
+            }
             $store->update([
                 'tiket' => $y.$m.$store['id']
             ]);

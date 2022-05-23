@@ -20,10 +20,17 @@ class PengajuanBlokir extends Model
         # code...
         $user = User::find(Auth::id());
         if($user->hasRole(['Petugas'])){
-            return $this->get();
+            return $this->orderBy('created_at', 'DESC')->get();
         }
         $user_id = Auth::id();
-        return $this->where('user_id',$user_id)->get();
+        return $this->where('user_id',$user_id)->orderBy('created_at', 'DESC')->get();
+    }
+    public function riwayatCheck()
+    {
+        # code...
+        $day3Ago = Carbon::parse(now()->subDays(3))->toDateString(). ' 00:00:00';
+        // return $day3Ago;
+        return $this->where('statusPengkajian','Pengkajian Blokir')->whereDate('pengkajianBlokir_at','<=',$day3Ago)->get();
     }
     public function detailBlokir($id)
     {
