@@ -52,31 +52,37 @@
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" name="email" value="{{ old('email') }}" tabindex="1" required autofocus autocomplete="email">
-                                    <div class="invalid-feedback">
-                                        Masukan email anda
-                                    </div>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <div class="d-block">
                                         <label for="password" class="control-label">Sandi</label>
                                     </div>
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" tabindex="2" required autocomplete="new-password">
-                                    <div class="invalid-feedback">
-                                        Masukan kata sandi anda
-                                    </div>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <div class="d-block">
                                         <label for="password-confirmation" class="control-label">Konfirmasi Sandi</label>
                                     </div>
-                                    <input id="password-confirmation" type="password" class="form-control" name="password_confirmation" tabindex="2" required autocomplete="new-password">
-                                    <div class="invalid-feedback">
-                                        Masukan kata sandi anda
-                                    </div>
+                                    <input id="password-confirmation" type="password" class="form-control" @error('password_confirmation') is-invalid @enderror" name="password_confirmation" tabindex="2" required autocomplete="new-password">
+                                    @error('password_confirmation')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                        Login
+                                        Register
                                     </button>
                                 </div>
                             </form>
