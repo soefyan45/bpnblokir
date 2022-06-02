@@ -21,9 +21,12 @@ Route::get('/get3plus','Check\SchedulerCheck@showData3Day');
 Route::get('/cium', function(){
     // $targetFolder = $_SERVER['DOCUMENT_ROOT'].'apps/storage/app/public';
     // $linkFolder = $_SERVER['DOCUMENT_ROOT'].'apps/public/storage';
-    // symlink($targetFolder,$linkFolder);
-    echo $_SERVER['DOCUMENT_ROOT'];
-    // echo 'Symlink process successfully completed';
+    $targetFolder = $_SERVER['DOCUMENT_ROOT'].'apps/storage/app/public';
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'apps/public/storage';
+    symlink($targetFolder,$linkFolder);
+    // echo $_SERVER['DOCUMENT_ROOT'];
+    // /var/www/vhosts/bpnkampar.my.id/httpdocs/apps/public
+    echo 'Symlink process successfully completed';
 });
 Auth::routes(['verify' => true]);
 // Route::middleware('auth','verified')->group(function (){
