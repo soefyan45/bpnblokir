@@ -18,7 +18,12 @@ Route::get('/', function () {
 });
 // Route
 Route::get('/get3plus','Check\SchedulerCheck@showData3Day');
-
+Route::get('/cium', function(){
+    $targetFolder = $_SERVER['DOCUMENT_ROOT'].'/storage/app/public';
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/public/storage';
+    symlink($targetFolder,$linkFolder);
+    echo 'Symlink process successfully completed';
+});
 Auth::routes(['verify' => true]);
 // Route::middleware('auth','verified')->group(function (){
 Route::middleware('auth')->group(function (){
