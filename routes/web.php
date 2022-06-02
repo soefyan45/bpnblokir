@@ -19,8 +19,8 @@ Route::get('/', function () {
 // Route
 Route::get('/get3plus','Check\SchedulerCheck@showData3Day');
 Route::get('/cium', function(){
-    $targetFolder = $_SERVER['DOCUMENT_ROOT'].'/apps/storage/app/public';
-    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/apps/public/storage';
+    $targetFolder = $_SERVER['DOCUMENT_ROOT'].'apps/storage/app/public';
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'apps/public/storage';
     symlink($targetFolder,$linkFolder);
     echo 'Symlink process successfully completed';
 });
