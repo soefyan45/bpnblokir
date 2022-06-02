@@ -117,7 +117,7 @@
                                 @endif
                             </div>
                         </div>
-                        @if ($blokir['statusPengkajian']!='Verifikasi Dokumen')
+                        @if ($blokir['statusPengkajian']=='Klarifikasi')
                         <div class="section-title mt-0">PNBP & Tiket</div>
                         <div class="table-responsive">
                             <table class="table table-striped">
