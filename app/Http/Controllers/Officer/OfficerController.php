@@ -85,7 +85,7 @@ class OfficerController extends Controller
             'cta_title' => 'Detail',
             'subject'   => 'Bukti Tiket & PNPB #Tiket'.$blokir['tiket']
         );
-        Mail::to('soefyan45@gmail.com')->send(new MailInfo($data));
+        Mail::to('spmppkampar18@gmail.com')->send(new MailInfo($data));
         $user   = $user->find($blokir['user_id']);
         $blokir->update([
             // 'statusPNPB'        => $request['konfirmasiPNPB'],
@@ -297,6 +297,9 @@ class OfficerController extends Controller
         // return $request;
         $blokir = $pengajuanBlokir->find($request['id_blokir']);
         $user   = $user->find($blokir['user_id']);
+        $this->validate($request,[
+            'suratKajian'               => ['required','image','mimes:jpg,jpeg,png','max:2048'],
+        ]);
         $blokir->update([
             'suratHasilKajian' => $pengajuanBlokir->uploadDocument($request['suratKajian'],'surathasil_kajian'),
             'statusPengkajian' => 'Selesai'

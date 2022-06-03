@@ -128,7 +128,7 @@ class AppsController extends Controller
                 'cta_title' => 'Detail',
                 'subject'   => 'Info Permohonan Blokir #Tiket'.$y.$m.$store['id']
             );
-            Mail::to('soefyan45@gmail.com')->send(new MailInfo($data));
+            Mail::to('spmppkampar18@gmail.com')->send(new MailInfo($data));
             return redirect()->route('apps.riwayatblokir')->with('success', 'Pengajuan Kajian Blokir Berhasil di Buat !!!');
         }
     }
@@ -150,6 +150,9 @@ class AppsController extends Controller
         # code...
         // return $request;
         $blokir = $pengajuanBlokir->find($request['id_blokir']);
+        $this->validate($request,[
+            'fotoKTP'               => ['required','image','mimes:jpg,jpeg,png','max:2048'],
+        ]);
         $blokir->update([
             'fotoKTP'       => $pengajuanBlokir->uploadImage($request['photoKTP'],'editktp'),
             'nomorKTP'      => $request['nomorKTP'],
@@ -161,6 +164,9 @@ class AppsController extends Controller
         # code...
         // return $request;
         $blokir = $pengajuanBlokir->find($request['id_blokir']);
+        $this->validate($request,[
+            'fotoKK'               => ['required','image','mimes:jpg,jpeg,png','max:2048'],
+        ]);
         $blokir->update([
             'fotoKK'       => $pengajuanBlokir->uploadImage($request['photoKK'],'editkk'),
         ]);
@@ -171,6 +177,9 @@ class AppsController extends Controller
         # code...
         // return $request;
         $blokir = $pengajuanBlokir->find($request['id_blokir']);
+        $this->validate($request,[
+            'fotoSHM'               => ['required','image','mimes:jpg,jpeg,png','max:2048'],
+        ]);
         $blokir->update([
             'fotoSHM'       => $pengajuanBlokir->uploadImage($request['photoSHM'],'editshm'),
         ]);
@@ -181,6 +190,9 @@ class AppsController extends Controller
         # code...
         // return $request;
         $blokir = $pengajuanBlokir->find($request['id_blokir']);
+        $this->validate($request,[
+            'suratKuasa'               => ['required','mimes:pdf','max:2048'],
+        ]);
         $blokir->update([
             'suratKuasa'            => $pengajuanBlokir->uploadDocument($request['suratKuasa'],'editsuratkuasa'),
         ]);
@@ -191,6 +203,9 @@ class AppsController extends Controller
         # code...
         // return $request;
         $blokir = $pengajuanBlokir->find($request['id_blokir']);
+        $this->validate($request,[
+            'suratPermohonan'               => ['required','mimes:pdf','max:2048'],
+        ]);
         $blokir->update([
             'suratPermohonan'            => $pengajuanBlokir->uploadDocument($request['suratPermohonan'],'editsuratkuasa'),
         ]);
@@ -201,6 +216,9 @@ class AppsController extends Controller
         # code...
         // return $request;
         $blokir = $pengajuanBlokir->find($request['id_blokir']);
+        $this->validate($request,[
+            'suratHubunganHukum'               => ['required','mimes:pdf','max:2048'],
+        ]);
         $blokir->update([
             'suratHubunganHukum'            => $pengajuanBlokir->uploadDocument($request['suratHubunganHukum'],'editsurathubunganhukum'),
         ]);
@@ -217,6 +235,9 @@ class AppsController extends Controller
         // return $request;
         $blokir = $pengajuanBlokir->find($request['id_blokir']);
         // return $blokir;
+        $this->validate($request,[
+            'buktiBayar'               => ['required','image','mimes:jpg,jpeg,png','max:2048'],
+        ]);
         $blokir->update([
             'tiketLoket'            => $request['notiket'],
             'fotoPNPB'              => $pengajuanBlokir->uploadImage($request['buktiBayar'],'pnpb'),
@@ -230,7 +251,7 @@ class AppsController extends Controller
             'cta_title' => 'Detail',
             'subject'   => 'Bukti Tiket & PNPB #Tiket'.$blokir['tiket']
         );
-        Mail::to('soefyan45@gmail.com')->send(new MailInfo($data));
+        Mail::to('spmppkampar18@gmail.com')->send(new MailInfo($data));
         return redirect()->back()->with('success', 'Update PNPB & No Tiket Loket Berhasil !!!');
     }
 }

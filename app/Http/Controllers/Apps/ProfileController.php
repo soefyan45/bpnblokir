@@ -38,7 +38,7 @@ class ProfileController extends Controller
                 'cta_title' => 'Detail',
                 'subject'   => 'Pemohon Sebagai Hukum/Badan Hukum'
             );
-            Mail::to('soefyan45@gmail.com')->send(new MailInfo($data));
+            Mail::to('spmppkampar18@gmail.com')->send(new MailInfo($data));
             return redirect()->back()->with('success', 'Update Profile Berhasil !!!');
         }
         $user->update([

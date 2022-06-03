@@ -24,8 +24,6 @@ Route::get('/cium', function(){
     $targetFolder = '/var/www/vhosts/bpnkampar.my.id/httpdocs/apps/storage/app/public';
     $linkFolder = '/var/www/vhosts/bpnkampar.my.id/httpdocs/apps/public/storage';
     symlink($targetFolder,$linkFolder);
-    // echo $_SERVER['DOCUMENT_ROOT'];
-    // /var/www/vhosts/bpnkampar.my.id/httpdocs/apps/public
     echo 'Symlink process successfully completed';
 });
 Auth::routes(['verify' => true]);
