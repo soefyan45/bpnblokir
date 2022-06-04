@@ -3,6 +3,7 @@
 @section('siteName','BPN Kab.Kampar')
 @section('_containerOfContents')
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{asset('/assets/modules/select2/dist/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('/assets/modules/ionicons/css/ionicons.min.css')}}">
 
     <div class="main-content w-full">
@@ -158,7 +159,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Kecamatan</label>
-                                    <input type="text" id="kecamatan" name="kecamatan" class="form-control @error('kecamatan') is-invalid @enderror" tabindex="1" required>
+                                    <select class="form-control select2 kecamatan @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan"  tabindex="-1" aria-hidden="true">
+                                    </select>
                                     @error('kecamatan')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -167,14 +169,43 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Desa</label>
-                                    <input type="text" id="desa" name="desa" class="form-control @error('desa') is-invalid @enderror" tabindex="1" required>
+                                    <select class="form-control select2 desa @error('desa') is-invalid @enderror" name="desa" id="desa" tabindex="-1" aria-hidden="true">
+                                    </select>
                                     @error('desa')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-group" id="formSuratKuasa" style="display: none">
+                                {{-- <div class="form-group">
+                                    <label>Kecamatan</label>
+                                    <input type="text" id="kecamatan" name="kecamatan" class="form-control @error('kecamatan') is-invalid @enderror" tabindex="1" required>
+                                    @error('kecamatan')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div> --}}
+                                {{-- <div class="form-group">
+                                    <label>Desa</label>
+                                    <input type="text" id="desa" name="desa" class="form-control @error('desa') is-invalid @enderror" tabindex="1" required>
+                                    @error('desa')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div> --}}
+                                <div class="form-group" id="formSuratKuasa">
+                                    <label>Surat Kuasa</label>
+                                    <input type="file" accept=".pdf" id="suratKuasa" name="suratKuasa" class="form-control @error('suratKuasa') is-invalid @enderror" tabindex="1">
+                                    <p class="text-danger text-sm">*pdf *optional</p>
+                                    @error('suratKuasa')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                {{-- <div class="form-group" id="formSuratKuasa" style="display: none">
                                     <label>Surat Kuasa</label>
                                     <input type="file" accept=".pdf" id="suratKuasa" name="suratKuasa" class="form-control @error('suratKuasa') is-invalid @enderror" tabindex="1">
                                     <p class="text-danger text-sm">*pdf</p>
@@ -183,7 +214,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label>Surat Permohonan</label>
                                     <input type="file" accept=".pdf" id="suratPermohonan" name="suratPermohonan" class="form-control @error('suratPermohonan') is-invalid @enderror" tabindex="1" required>
@@ -241,6 +272,8 @@
     <!-- Template JS File -->
     <script src="{{asset('/assets/js/scripts.js')}}"></script>
     <script src="{{asset('/assets/js/custom.js')}}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script> --}}
+    <script src="{{asset('assets/modules/select2/dist/js/select2.full.min.js')}}"></script>
     <script>
 
         $( ".statusPemohon" ).change(function() {
@@ -250,6 +283,389 @@
                return document.getElementById("formSuratKuasa").style.display = 'block'
             }
             document.getElementById("formSuratKuasa").style.display = 'none'
+        });
+        let Kecamatan = {
+            'Bangkinang Kota' : [
+                'Bangkinang',
+                'Langgini',
+                'Kumantan',
+                'Ridan Permai',
+            ],
+            'Bangkinang':[
+                'Pulau',
+                'Pasir Sialang',
+                'Muara Uwai',
+                'Pulau Lawas',
+                'Laboy Jaya',
+                'Suka Mulya',
+                'Bukit Payung',
+                'Bukit Sembilang',
+                'Binuang',
+                'Sipungguk',
+            ],
+            'KUOK':[
+                'Kuok',
+                'Merangin',
+                'Pulau Jambu',
+                'Silam',
+                'Bukit Melintang',
+                'Empat Balai',
+                'Lereng',
+                'Pulau Terap',
+                'Batu Langkah Kecil',
+                'Sipungguk',
+            ],
+            'XIII KOTO KAMPAR' : [
+                'Batu Bersurat',
+                'Siberuang',
+                'Pulau Gadang',
+                'Tanjung Alai',
+                'Ranah Sungkai',
+                'Lubuk Agung',
+                'Koto Mesjid',
+                'Bandur Picak',
+                'Pongkai Istoqomah',
+                'Binamang',
+                'Pongkai',
+                'Muara Takus',
+                'Balung',
+                'Koto Tuo',
+                'Gunung Bungsu',
+                'Tanjung',
+                'Gunung Malelo',
+                'Tabing',
+                'Koto Tuo Barat',
+            ],
+            'SALO' : [
+                'Salo',
+                'Salo Timur',
+                'Ganting',
+                'Ganting Damai',
+                'Sipungguk',
+                'Siabu',
+                'III Koto Sibalimbing',
+            ],
+            'RUMBIO JAYA':[
+                'Teratak',
+                'Pulau Payung',
+                'Alam Panjang',
+                'Bukit kratai',
+                'Batang Batindih',
+                'Tambusai',
+                'Simpang Petai',
+            ],
+            'PERHENTIAN RAJA':[
+                'Pantai Raja',
+                'Kampung Pinang',
+                'Hangtuah',
+                'Sialang Kubang',
+                'Lubuk Sakat',
+            ],
+            'KAMPAR':[
+                'Air Tiris',
+                'Batu Belah',
+                'Tanjung Berulak',
+                'Ranah',
+                'Penyasawan',
+                'Rumbio',
+                'Padang Mutung',
+                'Pulau Jambu',
+                'Tanjung Rambutan',
+                'Simpang Kubu',
+                'Limau Manis',
+                'Naumbai',
+                'Ranah Singkuang',
+                'Pulau Tinggi',
+                'Bukit Ranah',
+                'Ranah Baru',
+                'Pulau Sarak',
+                'Tanah Abang',
+                'Simpang Baru',
+                'Teratak Rumbio',
+                'Koto Tibun',
+            ],
+            'KAMPAR KIRI HILIR':[
+                'Sungai Pagar',
+                'Mentulik',
+                'Sungai Simpang Dua',
+                'Sungai Bungo',
+                'Rantau Kasih',
+                'Sungai petai',
+                'Gading Permai',
+                'Bangun Sari',
+            ],
+            'KAMPAR KIRI HULU':[
+                'Gema',
+                'Tanjung Belit',
+                'Tanjung Belit Selatan',
+                'Koto Lama',
+                'Batu Sanggan',
+                'Aur Kuning',
+                'Ludai',
+                'Tanjung Karang',
+                'Batu Sasak',
+                'Pangkalan Kapas',
+                'Kebun Tinggi',
+                'Tanjung Beringin',
+                'Gajah Bertalut',
+                'Danau Sontul',
+                'Pangkalan Serai',
+                'Dua Sepakat',
+                'Terusan',
+                'Deras Tajak',
+                'Sungai Santi',
+                'Subayang Jaya',
+                'Tanjung Permai',
+                'Bukit Betung',
+                'Lubuk Bigau',
+                'Muara Bio',
+            ],
+            'KAMPA':[
+                'Kampar',
+                'Pulau Birandang',
+                'Pulau Birandang',
+                'Pulau Rambai',
+                'Koto Perambahan',
+                'Sungai Putih',
+                'Deli Makmur',
+                'Sungai Tarap',
+                'Tanjung Bungo',
+                'Sawah Baru',
+            ],
+            'KAMPAR KIRI TENGAH':[
+                'Simalinyang',
+                'Penghidupan',
+                'Mayang Pongkai',
+                'Lubuk Sakai',
+                'Hidup Baru',
+                'Karya Bakti',
+                'Koto Damai',
+                'Utama Raya',
+                'Bukit Sakai',
+                'Mekar Jaya',
+                'Bina Baru',
+                'Utama Karya',
+            ],
+            'KAMPAR UTARA':[
+                'Sawah',
+                'Sungai Tonang',
+                'Muara Jalai',
+                'Kampung Panjang',
+                'Kayu Aro',
+                'Sungai Jalau',
+                'Sendayan',
+                'Naga Beralih',
+            ],
+            'KAMPAR KIRI':[
+                'Lipat Kain',
+                'Kuntu',
+                'Padang Sawah',
+                'Bina Baru',
+                'IV Koto Setingkai',
+                'Teluk Paman',
+                'Sungai Geringging',
+                'Sungai Paku',
+                'Muara Selaya',
+                'Sungai Rambai',
+                'Tanjung Harapan',
+                'Sungai Raja',
+                'Sungai Sarik',
+                'Lipat Kain Utara',
+                'Lipat Kain Selatan',
+                'Kuntu Darusalam',
+                'Tanjung Mas',
+                'Sungai Liti',
+                'Teluk Paman Timur',
+                'Sungai Harapan',
+                'domo',
+            ],
+            'GUNUNG SAHILAN':[
+                'Gunung Sahilan',
+                'Kebun durian',
+                'Subarak',
+                'Gunung Sari',
+                'Suka Makmur',
+                'Makmur Sejahtera',
+                'Sahilan Darusalam',
+                'Gunung Mulya',
+                'Sungai Lipai',
+            ],
+            'TAMBANG':[
+                'Tambang',
+                'Terantang',
+                'Kemang Indah',
+                'Sungai Pinang',
+                'Aur Sati',
+                'Padang Luas',
+                'Kualu',
+                'Rimbo Panjang',
+                'Kualu Nenas',
+                'Kuapan',
+                'Gobah',
+                'Teluk Kenidai',
+                'Parit Baru',
+                'Tarai Bangun',
+                'Palung Raya',
+                'Pulau Permai',
+                'Balam Jaya',
+            ],
+            'SIAK HULU':[
+                'Pangkalan Baru',
+                'Desa Baru',
+                'Teratak Buluh',
+                'Lubuk Siam',
+                'Buluh Cina',
+                'Buluh Nipis',
+                'Tanah Merah',
+                'Pandau Jaya',
+                'Tanjung Balam',
+                'Kepau Jaya',
+                'Pangkalan Serik',
+                'Kubang Jaya',
+                'Plamboyan',
+                'Tanah Abang',
+                'Simpang tiga',
+                'Sidomulyo',
+                'Kijang Jaya',
+                'latersia',
+                'simpang dua',
+                'Gundaling',
+            ],
+            'TAPUNG':[
+                'Petapahan',
+                'Pantai Cermin',
+                'Petapahan Jaya',
+                'Mukti Sari',
+                'Sei Putih',
+                'Indra Sakti',
+                'Gading Sari',
+                'Sumber Makmur',
+                'Pancuran Gading',
+                'Sari Galuh',
+                'Trimanunggal',
+                'Air Terbit',
+                'Tanjung Sawit',
+                'Pagaruyung',
+                'Sibuak',
+                'Pelambaian',
+                'Kenantan',
+                'Indra Puri',
+                'Sei Lambu Makmur',
+                'Muara Mahat Baru',
+                'Karya Indah',
+                'Kijang Rejo',
+                'Sungai Agung',
+                'Bencah Kelubi',
+                'Batu Gajah',
+                'Pajajaran',
+                'WonoSari',
+                'Simarito',
+                'Sekijang',
+                'Sungai Garo',
+                'Sungai Galuh',
+                'Maja Pahit',
+                'Simpang Dua',
+                'Moyang Pongkai',
+                'Sungai Pagar IV',
+                'Sri Manunggal',
+                'Kota Bangun',
+                'Bina Baru',
+                'Indra Pura',
+                'Raharja',
+                'Sibuak IV',
+                'Hang Tuah',
+                'Muara Mahat',
+                'Si Pungguk',
+                'Sumber Jaya',
+                'Tebing Tinggi VI',
+                'Kijang Jaya',
+            ],
+            'TAPUNG HILIR':[
+                'Kota Garo',
+                'Sekijang',
+                'Beringin Lestari',
+                'Kota Bangun',
+                'Cinta Damai',
+                'Suka Maju',
+                'Kota Baru',
+                'Tebing Lestari',
+                'Tanah Tinggi',
+                'Kijang Jaya',
+                'Tapung Lestari',
+                'Tapung Makmur',
+                'Tandan Sari',
+                'Gerbang Sari',
+                'Kijang Makmur',
+                'Koto Aman',
+                'Kijang Rejo',
+            ],
+            'TAPUNG HULU':[
+                'Senama Nenek',
+                'Kasikan',
+                'Danau Lancang',
+                'Intan Jaya',
+                'Tanah Datar',
+                'Bukit Kemuning',
+                'Rimba Beringin',
+                'Muara Intan',
+                'Rimba Makmur',
+                'Rimba Jaya',
+                'Suka Ramai',
+                'Sumber Sari',
+                'Kusau Makmur',
+                'Talang Danto',
+                'Prambanan',
+            ],
+            'KOTO KAMPAR HULU':[
+                'Bandur Picak',
+                'Sibiruang',
+                'Pongkai',
+                'Gunung Bungsu',
+                'Tanjung',
+                'Gunung Malelo',
+                'Tabing',
+            ],
+        }
+        let dataKecamatan = [
+            '',
+            'Bangkinang Kota',
+            'Bangkinang',
+            'KUOK',
+            'XIII KOTO KAMPAR',
+            'SALO' ,
+            'RUMBIO JAYA',
+            'PERHENTIAN RAJA',
+            'KAMPAR',
+            'KAMPAR KIRI HILIR',
+            'KAMPAR KIRI HULU',
+            'KAMPA',
+            'KAMPAR KIRI TENGAH',
+            'KAMPAR UTARA',
+            'KAMPAR KIRI',
+            'GUNUNG SAHILAN',
+            'TAMBANG',
+            'SIAK HULU',
+            'TAPUNG',
+            'TAPUNG HILIR',
+            'TAPUNG HULU',
+            'KOTO KAMPAR HULU'
+        ]
+        $('.kecamatan').select2({data:dataKecamatan});
+        $('.kecamatan').change(function(){
+            // console.log($('#kecamatan').val())
+            if($('#kecamatan').val()==''){
+                $("#desa").empty();
+                return console.log('Kooosong')
+            }
+            let desa = Kecamatan[$('#kecamatan').val()]
+            $('#desa').val(null).trigger('change');
+            $("#desa").empty();
+            $('.desa').select2({
+                data:desa,
+                allowClear : true,
+                placeholder:'Pilih Kecamatan dulu'
+            });
+
         });
     </script>
 @endsection

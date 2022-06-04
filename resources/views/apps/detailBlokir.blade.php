@@ -11,6 +11,15 @@
                 <h1>Detail Pengkajian Blokir</h1>
             </div>
             <div class="card card-warning">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card-header">
                     <h3>Data Detail Pengajuan Pengkajian Blokir</h3>
                 </div>

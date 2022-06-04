@@ -279,7 +279,8 @@ class OfficerController extends Controller
         $blokir->update([
             'nomor_notaDinas'       => $request['nomor_notaDinas'],
             'tanggal_notaDinas'     => $request['tanggal_notaDinas'],
-            'statusPengkajian'      => 'Selesai'
+            // 'statusPengkajian'      => 'Selesai'
+            'statusPengkajian'      => $request['hasilKajian']
         ]);
         return redirect()->back()->with('success', 'Berhasil Membuat Surat Hasil Kajian !!!');
     }
@@ -298,19 +299,32 @@ class OfficerController extends Controller
         $blokir = $pengajuanBlokir->find($request['id_blokir']);
         $user   = $user->find($blokir['user_id']);
         $this->validate($request,[
-            'suratKajian'               => ['required','image','mimes:jpg,jpeg,png','max:2048'],
+            'suratKajian'               => ['required','mimes:pdf','max:2048'],
         ]);
         $blokir->update([
             'suratHasilKajian' => $pengajuanBlokir->uploadDocument($request['suratKajian'],'surathasil_kajian'),
-            'statusPengkajian' => 'Selesai'
+            'statusPengkajian' => $request['hasilKajian']
         ]);
         // email
+        if($request['hasilKajian']=='Selesai Di Tolak'){
+            // return $request['hasilKajian'];
+            $data = array(
+                'name'      => 'BPN KAMPAR',
+                'body'      => '<b>Proses Pengkajian Di Tolak</b><br>Permohonan Pencatatan Blokir Saudara di <strong style="color:red;">Tolak</strong>. Nomor anda #tiket'.$blokir['tiket'].' detail silahkan akses aplikasi',
+                'cta_link'  => route('apps.riwayatblokir.detail',$blokir['id']),
+                'cta_title' => 'Detail',
+                'subject'   => 'Pengkajian Blokir Di Tolak #Tiket'.$blokir['tiket']
+            );
+            Mail::to($user['email'])->send(new MailInfo($data));
+            return redirect()->back()->with('success', 'Berhasil Upload Surat Hasil Kajian !!!');
+        }
+        // return $request['hasilKajian'];
         $data = array(
             'name'      => 'BPN KAMPAR',
-            'body'      => '<b>Proses Pengkajian Selesai</b><br>Permohonan pengkajian blokir telah <b>SELESAI</b>. Nomor anda #tiket'.$blokir['tiket'].' detail silahkan akses aplikasi',
+            'body'      => '<b>Proses Pengkajian Di Terima</b><br>Permohonan Pencatatan Blokir Saudara di <strong style="color:green;">Terima</strong>. Nomor anda #tiket'.$blokir['tiket'].' detail silahkan akses aplikasi',
             'cta_link'  => route('apps.riwayatblokir.detail',$blokir['id']),
             'cta_title' => 'Detail',
-            'subject'   => 'Pengkajian Blokir SELESAI #Tiket'.$blokir['tiket']
+            'subject'   => 'Pengkajian Blokir Di Terima #Tiket'.$blokir['tiket']
         );
         Mail::to($user['email'])->send(new MailInfo($data));
         return redirect()->back()->with('success', 'Berhasil Upload Surat Hasil Kajian !!!');

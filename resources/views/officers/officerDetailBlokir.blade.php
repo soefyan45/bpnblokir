@@ -17,13 +17,22 @@
                 <h4>Tindakan Pengkajian Pengajuan Blokir</h4>
             </div>
             <div class="card card-warning">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card-header" style="justify-content: space-between;">
                     <h3>Data Detail Pengajuan Pengkajian Blokir</h3>
                     <div class="card-header-action">
                         @if ($blokir['statusPengkajian']=='Pengkajian Blokir')
                         <button data-toggle="modal" data-target="#cetakHasilKajian" class="btn btn-info">Buat Surat Hasil Kajian</i></button>
                         @endif
-                        @if ($blokir['statusPengkajian']=='Selesai')
+                        @if ($blokir['statusPengkajian']=='Selesai' || $blokir['statusPengkajian']=='Selesai Di Tolak')
                         <a target="_blank" href="{{route('officer.printHasilKajian',$blokir['id'])}}"  class="btn btn-info">Lihat Surat Hasil Kajian</i></a>
                         <button data-toggle="modal" data-target="#uploadHasilKajian"  class="btn btn-primary uploadHasilKajian">Upload Hasil Kajian</i></a>
                         @endif
@@ -124,7 +133,7 @@
                     </table>
                     <div class="col-md-12 pt-4">
                         {{-- Start Kajian --}}
-                        @if ($blokir['statusPengkajian']=='Pengkajian Blokir' || $blokir['statusPengkajian']=='Selesai')
+                        @if ($blokir['statusPengkajian']=='Pengkajian Blokir' || $blokir['statusPengkajian']=='Selesai' || $blokir['statusPengkajian']=='Selesai Di Tolak')
                             <div class="row" style="justify-content: space-between;">
                                 <div class="section-title mt-0">
                                     Hasil Kajian
@@ -143,7 +152,8 @@
                                         <strong>Subjek/Pemohon</strong>
                                         <div>
                                             @foreach ($hasilKajian as $kajian)
-                                            <p style="color: red">&#8226; <i style="color: black;" class="far fa-edit"></i> {{$kajian['keterangan']}}</p>
+                                            {{-- <i style="color: black;" class="fa fa-trash"> --}}
+                                            <p style="color: red">&#8226; <i style="color: black;" class="fa fa-edit"></i> {{$kajian['keterangan']}}</p>
                                             @endforeach
                                         </div>
                                     @endif
@@ -458,6 +468,21 @@
                             <input type="file" accept=".pdf" name="suratKajian" id="suratKajian" class="form-control" required>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="float-left">Hasil Kajian</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-boxes"></i>
+                                </div>
+                            </div>
+                            <select name="hasilKajian" class="form-control" required>
+                                <option value="">Pilih Hasil Kajian</option>
+                                <option value="Selesai">Di Terima</option>
+                                <option value="Selesai Di Tolak">Di Tolak</option>
+                            </select>
+                        </div>
+                    </div>
                     <div id="frameSuratHasilKajianTTD">
 
                     </div>
@@ -504,6 +529,21 @@
                                 </div>
                             </div>
                             <input type="date" name="tanggal_notaDinas" id="tanggal_notaDinas" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="float-left">Hasil Kajian</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-boxes"></i>
+                                </div>
+                            </div>
+                            <select name="hasilKajian" class="form-control" required>
+                                <option value="">Pilih Hasil Kajian</option>
+                                <option value="Selesai">Di Terima</option>
+                                <option value="Selesai Di Tolak">Di Tolak</option>
+                            </select>
                         </div>
                     </div>
                 </div>
