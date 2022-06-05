@@ -237,7 +237,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                <button class="btn btn-primary mr-1 sumbitpengajuan" type="submit">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -665,7 +665,9 @@
                 allowClear : true,
                 placeholder:'Pilih Kecamatan dulu'
             });
-
         });
+        // $(document).ready(function(){
+        //     $('sumbitpengajuan').attr('disabled',false);
+        // });
     </script>
 @endsection

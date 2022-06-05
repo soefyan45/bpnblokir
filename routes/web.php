@@ -30,7 +30,9 @@ Auth::routes(['verify' => true]);
 // Route::middleware('auth','verified')->group(function (){
 Route::middleware('auth')->group(function (){
     Route::get('/home', function (){
-        if (auth()->user()->hasRole('petugas'))
+        // return auth()->user();
+        // return auth()->user()->hasRole('Petugas');
+        if (auth()->user()->hasRole('Petugas'))
         {
             return redirect(route('officerIndex'));
         }else{

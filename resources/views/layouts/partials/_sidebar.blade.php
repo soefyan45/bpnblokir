@@ -6,9 +6,11 @@
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="">BPN</a>
         </div>
+        {{-- <li>{{auth()->user()}}</li> --}}
         @role('Petugas')
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
+
             <li>
                 <a class="nav-link" href="{{route('officerIndex')}}">
                     <i class="fas fa-pencil-ruler"></i> <span>Dashboard</span>
