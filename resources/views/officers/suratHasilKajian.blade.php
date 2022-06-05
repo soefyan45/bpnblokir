@@ -312,10 +312,10 @@
             </p>
             @endforeach
             <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:2.05pt; margin-left:40.55pt;text-align:justify;text-justify:inter-ideograph;text-indent: -.25in;line-height:148%;">
-                <span style='font-family:"Bookman Old Style",serif; color:red;'>5.<span style='font:7.0pt "Times New Roman";'>&nbsp;</span></span> <span style='font-family:"Bookman Old Style",serif;color:red;'>Tanda Terima Dokumen Nomor Berkas Permohonan {{$blokir['tiketLoket']}} atas nama {{$blokir['namaPemohon']}} tanggal {{\Carbon\Carbon::parse($blokir['tanggalBayarPNPB'])->isoFormat('D MMMM Y')}};</span>
+                <span style='font-family:"Bookman Old Style",serif; color:black;'>5.<span style='font:7.0pt "Times New Roman";'>&nbsp;</span></span> <span style='font-family:"Bookman Old Style",serif;color:black;'>Tanda Terima Dokumen Nomor Berkas Permohonan {{$blokir['tiketLoket']}} atas nama {{$blokir['namaPemohon']}} tanggal {{\Carbon\Carbon::parse($blokir['tanggalBayarPNPB'])->isoFormat('D MMMM Y')}};</span>
             </p>
             <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:14.1pt; margin-left:40.55pt;text-align:justify;text-justify:inter-ideograph;text-indent: -.25in;line-height:148%;">
-                <span style='font-family:"Bookman Old Style",serif; color:red;'>6.<span style='font:7.0pt "Times New Roman";'>&nbsp;</span></span> <span style='font-family:"Bookman Old Style",serif;color:red;'>Kwitansi pembayaran PNBP Pelayanan Pendaftaran Pencatatan Blokir atas nama {{$blokir['namaPemohon']}} tanggal {{\Carbon\Carbon::parse($blokir['tanggalBayarPNPB'])->isoFormat('D MMMM Y')}}</span>
+                <span style='font-family:"Bookman Old Style",serif; color:black;'>6.<span style='font:7.0pt "Times New Roman";'>&nbsp;</span></span> <span style='font-family:"Bookman Old Style",serif;color:black;'>Kwitansi pembayaran PNBP Pelayanan Pendaftaran Pencatatan Blokir atas nama {{$blokir['namaPemohon']}} tanggal {{\Carbon\Carbon::parse($blokir['tanggalBayarPNPB'])->isoFormat('D MMMM Y')}}</span>
             </p>
             <h2 style="margin-left:4.3pt;">V. HASIL KAJIAN</h2>
             <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:7.15pt; margin-left:39.8pt;text-align:justify;text-justify:inter-ideograph;text-indent: -.25in;line-height:110%;">
@@ -418,8 +418,8 @@
             @endif
             @endforeach
             <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:2.05pt; margin-left:57.8pt;text-align:justify;text-justify:inter-ideograph;text-indent: -.25in;line-height:148%;">
-                <span style='font-family:"Bookman Old Style",serif; color:red;'>-<span style='font:7.0pt "Times New Roman";'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>
-                <span style='font-family:"Bookman Old Style",serif;color:red;'>
+                <span style='font-family:"Bookman Old Style",serif; color:black;'>-<span style='font:7.0pt "Times New Roman";'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span>
+                <span style='font-family:"Bookman Old Style",serif;color:black;'>
                     Bahwa pencatatan blokir ini dimaksudkan untuk mencegah adanya peralihan Hak atas tanah SHM {{$blokir['nomorSHM']}} Desa {{$blokir['desa']}} tanggal {{\Carbon\Carbon::parse($blokir['tanggalSHM'])->isoFormat('D MMMM Y')}} atas nama {{$blokir['anSHM']}}.
                 </span>
             </p>
@@ -437,7 +437,7 @@
                 <span style='font-family:"Bookman Old Style",serif;'>Biaya:</span>
             </p>
             <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:13.95pt; margin-left:39.8pt;text-align:justify;text-justify:inter-ideograph;line-height: 148%;">
-                <span style='font-family:"Bookman Old Style",serif;color:red;'>
+                <span style='font-family:"Bookman Old Style",serif;color:black;'>
                     Bahwa Pemohon telah membayarkan PNBP Pelayanan Pendaftaran Pencatatan Blokir berdasarkan Kwitansi pembayaran PNBP atas nama {{$blokir['namaPemohon']}} tanggal {{\Carbon\Carbon::parse($blokir['tanggalBayarPNPB'])->isoFormat('D MMMM Y')}}.
                 </span>
             </p>
@@ -464,38 +464,76 @@
                     Bangkinang, {{\Carbon\Carbon::parse($blokir['tanggal_notaDinas'])->isoFormat('D MMMM Y')}}
                 </span>
             </p>
-            <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:4.3pt; margin-left:37.2pt;text-align:justify;text-justify:inter-ideograph;text-indent: -.5pt;line-height:110%;">
-                <span style='font-family:"Bookman Old Style",serif;'>Kepala Sub Seksi Penanganan</span>
-            </p>
-            <p class="MsoNormal" style="margin-bottom:.6pt;line-height:110%;">
+            <div style="width: 100%;display:inline-flex;margin-top:5px;">
+                <div style="width:50%;justify-content: center;">
+                    <p class="MsoNormal" style="line-height:110%;text-align: center;">
+                        <span style='font-family:"Bookman Old Style",serif;'>Kepala Sub Seksi Penanganan</span>
+                        <span style='font-family:"Bookman Old Style",serif;'>Permasalahan Pertanahan</span>
+                    </p>
+                    <p class="MsoNormal" style="line-height:110%;text-align: center;margin-top: 7rem;display: grid;">
+                        <span style='font-family:"Bookman Old Style",serif;'>
+                            {{$penjabat['kepala_kantor']}}
+                        </span>
+                        <span style='font-family:"Bookman Old Style",serif;'>
+                            NIP. {{$penjabat['nip_kepala_kantor']}}
+                        </span>
+                    </p>
+                </div>
+                <div style="width:50%;justify-content: center;">
+                    <p class="MsoNormal" style="line-height:110%;text-align: center;">
+                        <span style='font-family:"Bookman Old Style",serif;'>Analis Hukum Pertanahan</span>
+                        <span style='font-family:"Bookman Old Style",serif;display:none;'>Analis Hukum Pertanahan</span>
+                    </p>
+                    <p class="MsoNormal" style="line-height:110%;text-align: center;margin-top: 8rem;display: grid;">
+                        <span style='font-family:"Bookman Old Style",serif;'>
+                            {{$penjabat['calon_analis_sengketa']}}
+                        </span>
+                        <span style='font-family:"Bookman Old Style",serif;'>
+                            NIP. {{$penjabat['nip_calon_analisis_sengketa']}}
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div style="width: 100%;display:inline-flex;margin-top:5px;">
+                <div style="width:100%;justify-content: center;">
+                    <p class="MsoNormal" style="line-height:110%;text-align: center;">
+                        <span style='font-family:"Bookman Old Style",serif;'>Kepala Seksi Penanganan Masalah dan</br> Pengendalian Pertanahan</span>
+                    </p>
+                    <p class="MsoNormal" style="line-height:110%;text-align: center;margin-top: 7rem;display: grid;">
+                        <span style='font-family:"Bookman Old Style",serif;'>
+                            {{$penjabat['kepala_sub_penanganan_masalah_pertanahan']}}
+                        </span>
+                        <span style='font-family:"Bookman Old Style",serif;'>
+                            NIP. {{$penjabat['nip_kepala_sub_penanganan_masalah_pertanahan']}}
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+
+            {{-- <p class="MsoNormal" style="margin-bottom:.6pt;line-height:110%;">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <span style='font-family:"Bookman Old Style",serif;'>
-                    Permasalahan Pertanahan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Analis Hukum Pertanahan
                 </span>
-            </p>
-            <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:5.6pt; margin-left:118.85pt;">
-                <span style='font-family:"Bookman Old Style",serif;'>&nbsp;</span>
-            </p>
-            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:0in; margin-bottom:1.4pt;margin-left:7.75pt;text-align:center;">
-                <span style='font-family:"Bookman Old Style",serif;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</span>
-            </p>
+            </p> --}}
             <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:0in; margin-left:118.85pt;">
                 <span style='font-family:"Bookman Old Style",serif;'>&nbsp;</span>
             </p>
-            <p class="MsoNormal" style="margin-top:0in;margin-right:23.55pt;margin-bottom: 0in;margin-left:92.4pt;text-align:justify;text-justify:inter-ideograph; text-indent:204.75pt;line-height:110%;">
+            {{-- <p class="MsoNormal" style="margin-top:0in;margin-right:23.55pt;margin-bottom: 0in;margin-left:92.4pt;text-align:justify;text-justify:inter-ideograph; text-indent:204.75pt;line-height:110%;">
                 <span style='font-family:"Bookman Old Style",serif;'>
                     {{$penjabat['calon_analis_sengketa']}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{$penjabat['kepala_kantor']}}
                 </span>
-            </p>
-            <p class="MsoNormal" style="margin-top:0in;margin-right:9.25pt;margin-bottom: 1.95pt;margin-left:41.05pt;text-align:justify;text-justify:inter-ideograph; text-indent:237.65pt;line-height:110%;">
+            </p> --}}
+            {{-- <p class="MsoNormal" style="margin-top:0in;margin-right:9.25pt;margin-bottom: 1.95pt;margin-left:41.05pt;text-align:justify;text-justify:inter-ideograph; text-indent:237.65pt;line-height:110%;">
                 <span style='font-family:"Bookman Old Style",serif;'>
-                    NIP. {{$penjabat['nip_calon_analisis_sengketa']}} NIP. {{$penjabat['nip_kepala_kantor']}}
-                </span></p>
+                    NIP. {{$penjabat['nip_calon_analisis_sengketa']}}
+                </span></p> --}}
             <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:0in; margin-bottom:.9pt;margin-left:8.2pt;text-align:center;">
                 <span style='font-size: 12.0pt;line-height:107%;font-family:"Bookman Old Style",serif;'>&nbsp;</span>
             </p>
-            <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:71.5pt; margin-bottom:.2pt;margin-left:84.05pt;text-align:center;text-indent:-.5pt; line-height:111%;">
+            {{-- <p align="center" class="MsoNormal" style="margin-top:0in;margin-right:71.5pt; margin-bottom:.2pt;margin-left:84.05pt;text-align:center;text-indent:-.5pt; line-height:111%;">
                 <span style='font-size:12.0pt;line-height:111%;font-family: "Bookman Old Style",serif;'>
                     Kepala Seksi Penanganan Masalah dan&nbsp; Pengendalian Pertanahan
                 </span>
@@ -518,7 +556,7 @@
                 <span style='font-size:12.0pt;line-height:111%;font-family: "Bookman Old Style",serif;'>
                     NIP. {{$penjabat['nip_kepala_sub_penanganan_masalah_pertanahan']}}
                 </span>
-            </p>
+            </p> --}}
             <p class="MsoNormal" style="margin-top:0in;margin-right:0in;margin-bottom:25.8pt; margin-left:4.55pt;"><span style='font-family:"Bookman Old Style",serif;'>&nbsp;</span></p>
             <h1>Melayani, Profesional, Terpercaya</h1>
         </div>
