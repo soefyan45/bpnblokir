@@ -1,5 +1,5 @@
 ---
 deployment:
 tasks:
-- export DEPLOYPATH=/home/usercpanel/public_html/git
+- export DEPLOYPATH=/home/bpnf1972/public_html/bpnkampar.my.id
 - /bin/cp -r * $DEPLOYPATH
